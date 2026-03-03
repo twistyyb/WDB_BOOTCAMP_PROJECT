@@ -3,15 +3,25 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import { TodoItem } from './components/todoItem'
 import './App.css'
+import { Routes, Route } from 'react-router-dom'
+import { Home } from './pages/home'
+import { About } from './pages/about'
+import { Link } from 'react-router-dom'
+import { Pokemon } from './pages/pokemon'
 
 function App() {
-
-  const [todoList, setTodoList] = useState([{name: "Get Groceries", done: true}, {name: "Finish Homework", done: true}, {name: "Call Mom", done: false}, {name: "Play Poker", done: false}])
-
   return (
     <>
-      <h1>To do list</h1>
-      {todoList.map(item => <TodoItem key={item.name} name={item.name} done={item.done}/>)}
+      <nav className="nav">
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/pokemon">POKEMON!!!!</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/pokemon" element={<Pokemon />} />
+      </Routes>
     </>
   )
 }
