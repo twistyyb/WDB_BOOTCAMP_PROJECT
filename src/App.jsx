@@ -12,16 +12,24 @@ import { Pokemon } from './pages/pokemon'
 function App() {
   return (
     <>
-      <nav className="nav">
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/pokemon">POKEMON!!!!</Link>
+      <nav className="topNav" aria-label="Primary navigation">
+        <Link className="topNavLink" to="/">
+          Home
+        </Link>
+        <Link className="topNavLink" to="/about">
+          About
+        </Link>
+        <Link className="topNavLink" to="/pokemon">
+          POKEMON!!!!
+        </Link>
       </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/pokemon" element={<Pokemon />} />
-      </Routes>
+      <main className="appContent">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/pokemon" element={<Pokemon />} />
+        </Routes>
+      </main>
     </>
   )
 }

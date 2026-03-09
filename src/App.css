@@ -5,6 +5,54 @@
   text-align: center;
 }
 
+.topNav {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+
+  width: min(1280px, calc(100% - 4rem));
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 0.75rem;
+
+  margin-bottom: 0;
+  padding: 0.75rem 0.5rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.appContent {
+  padding-top: 92px;
+}
+
+.topNavLink {
+  flex: 1 1 0;
+  display: block;
+
+  padding: 0.9rem 1.1rem;
+  border-radius: 10px;
+
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  line-height: 1;
+}
+
+.topNavLink:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.topNavLink:focus-visible {
+  outline: 3px solid rgba(100, 108, 255, 0.7);
+  outline-offset: 2px;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
