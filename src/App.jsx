@@ -8,6 +8,7 @@ import { Home } from './pages/home'
 import { About } from './pages/about'
 import { Link } from 'react-router-dom'
 import { Pokemon } from './pages/pokemon'
+import { Error404 } from './pages/error'
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/pokemon" element={<Pokemon />} />
+          <Route path='*' element={<Error404 />} />
+
         </Routes>
       </main>
     </>
