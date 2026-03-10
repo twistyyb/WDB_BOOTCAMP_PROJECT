@@ -30,7 +30,6 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/pokemon" element={<Pokemon />} />
           <Route path='*' element={<Error404 />} />
-
         </Routes>
       </main>
     </>
