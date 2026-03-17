@@ -20,14 +20,7 @@ app.get('/pokemon', async (req, res) => {
     response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${(req.query.page - 1) * 10}`)
     data = await response.json()
 
-    results = []
-    for (const pokemon of data.results) {
-      response = await fetch(pokemon.url)
-      data = await response.json()
-      results.push({name: data.name, sprite_url: data.sprites.front_default})
-    }
-
-    res.json(results)
+    res.json(data.results)
 
   } catch (error) {
     console.error('Error fetching pokemon:', error)
@@ -40,12 +33,14 @@ app.get('/pokemon/:name', async (req, res) => {
     console.log(`fetching pokemon ${req.params.name}`)
     response = await fetch(`https://pokeapi.co/api/v2/pokemon/${req.params.name}`)
     data = await response.json()
-    res.json(data)
+    res.json({ success: true, data: data })
 
   } catch (error) {
     console.error('Error fetching pokemon:', error)
-    res.status(500).json({ error: 'Failed to fetch pokemon' })
+    res.json({ success: false, message: 'Failed to fetch pokemon' })
+    return
   }
+  return
 });
 
 // Tells your backend to be listening to this PORT
