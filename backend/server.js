@@ -8,35 +8,44 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-// mock data
-const data = [
-  { id: 1, name: 'Darren' },
-  { id: 2, name: 'Brandon' },
-  { id: 3, name: 'Ich' },
-];
-
-let nextId = 4;
 
 // Basic route
-app.get('/api', (req, res) => {
-  res.json({ message: 'Hello from the backend now!' });
+app.get('/', (req, res) => {
+  res.json({ message: `Backend running on port ${PORT}` });
 });
 
-// Example GET route
-app.get('/api/data', (req, res) => {
-  res.json({data});
+app.get('/pokemon', async (req, res) => {
+  try {
+    console.log(`fetching page ${req.query.page}`)
+    response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${(req.query.page - 1) * 10}`)
+    data = await response.json()
+
+    results = []
+    for (const pokemon of data.results) {
+      response = await fetch(pokemon.url)
+      data = await response.json()
+      results.push({name: data.name, sprite_url: data.sprites.front_default})
+    }
+
+    res.json(results)
+
+  } catch (error) {
+    console.error('Error fetching pokemon:', error)
+    res.status(500).json({ error: 'Failed to fetch pokemon' })
+  }
 });
 
-// Example POST route
-app.post('/api/data', (req, res) => {
-  const { name } = req.body;
-  const newItem = {name: name, id: nextId++}
-  data.push(newItem)
+app.get('/pokemon/:name', async (req, res) => {
+  try {
+    console.log(`fetching pokemon ${req.params.name}`)
+    response = await fetch(`https://pokeapi.co/api/v2/pokemon/${req.params.name}`)
+    data = await response.json()
+    res.json(data)
 
-  res.json({
-    message: 'Data received!',
-    receivedData: { newItem },
-  });
+  } catch (error) {
+    console.error('Error fetching pokemon:', error)
+    res.status(500).json({ error: 'Failed to fetch pokemon' })
+  }
 });
 
 // Tells your backend to be listening to this PORT

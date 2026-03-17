@@ -21,7 +21,7 @@ function App() {
           About
         </Link>
         <Link className="topNavLink" to="/pokemon">
-          POKEMON!!!!
+          POKEMON
         </Link>
       </nav>
       <main className="appContent">

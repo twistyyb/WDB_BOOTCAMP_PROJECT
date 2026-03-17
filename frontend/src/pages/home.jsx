@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import { TodoItem } from '../components/todoItem'
+import { Link } from 'react-router-dom'
 
 export function Home() {
-
-    const [todoList, setTodoList] = useState([{name: "Get Groceries", done: true}, {name: "Finish Homework", done: true}, {name: "Call Mom", done: false}, {name: "Play Poker", done: false}])
-
     return (
         <>
-            <h1>To do list</h1>
-            {todoList.map(item => <TodoItem key={item.name} name={item.name} done={item.done}/>)}
+            <h1>Welcome to Bryan's Bootcamp App!</h1>
+            <Link to="/pokemon">
+                <button>Check out my Pokemon collection!</button>
+            </Link>
+            
         </>
     )
 }
